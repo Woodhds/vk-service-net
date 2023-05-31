@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Google.Api.CommonProtos" Version="2.10.0" />
+      <PackageReference Include="Google.Protobuf" Version="3.23.2" />
+      <PackageReference Include="Grpc.Core.Api" Version="2.54.0-pre1" />
+      <PackageReference Include="Grpc.Tools" Version="2.54.0">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
+    </ItemGroup>
+    
+    <ItemGroup>
+        <Protobuf Include="..\protos\messages.proto" />
+        <Protobuf Include="..\protos\parser.proto" />
+        <Protobuf Include="..\protos\users.proto" />
+    </ItemGroup>
+    
+    <ItemGroup>
+      <ProjectReference Include="..\VkService.Application\VkService.Application.csproj" />
+    </ItemGroup>
+
+</Project>

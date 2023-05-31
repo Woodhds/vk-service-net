@@ -1,0 +1,66 @@
+syntax = "proto3";
+
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/timestamp.proto";
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+
+option csharp_namespace = "VkService.Grpc";
+
+service MessagesService {
+  rpc GetMessages(GetMessagesRequest) returns (GetMessagesResponse) {
+    option(google.api.http) = {
+      post: "/api/messages",
+      body: "*"
+    };
+  };
+
+  rpc Repost(RepostMessageRequest) returns (google.protobuf.Empty) {
+    option(google.api.http) = {
+      post: "/api/repost",
+      body: "*"
+    };
+  }
+
+  rpc Like(LikeMessageRequest) returns (google.protobuf.Empty) {
+    option(google.api.http) = {
+      post: "/api/like",
+      body: "*"
+    };
+  }
+}
+
+message GetMessagesRequest {
+  google.protobuf.StringValue search = 1;
+}
+
+message GetMessagesResponse {
+  repeated VkMessageExt messages = 1;
+}
+
+message VkMessageExt {
+  int32 id = 1;
+  int32 from_id = 2 [json_name = "fromId"];
+  google.protobuf.Timestamp date = 3;
+  repeated string images = 4;
+  int32 likes_count = 5 [json_name = "likesCount"];
+  string owner = 6;
+  int32 owner_id = 7 [json_name = "ownerId"];
+  int32 reposts_count = 8 [json_name = "repostsCount"];
+  string text = 9;
+  bool user_reposted = 10 [json_name = "userReposted"];
+}
+
+message RepostMessageRequest {
+  repeated RepostMessage messages = 1;
+
+  message RepostMessage {
+    int32 id = 1;
+    int32 owner_id = 2 [json_name="owner_Id"];
+  }
+}
+
+message LikeMessageRequest {
+  int32 id = 1;
+  int32 owner_id = 2 [json_name="ownerId"];
+}
