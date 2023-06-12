@@ -23,7 +23,7 @@ public class SiteParser : IMessageParser
             {
                 new("page_num", i.ToString()),
                 new("our", string.Empty),
-                new("city_id", "97")
+                new("city_id", "5")
             });
 
             var result = await client.PostAsync("https://wingri.ru/main/getPosts", formContent, cancellationToken);

@@ -8,21 +8,23 @@ namespace VkService.Application.Implementation;
 
 public sealed class UserQueryService : IUsersQueryService
 {
-    private readonly DataContext _context;
+    private readonly IDbContextFactory<DataContext> _factory;
 
-    public UserQueryService(DataContext context)
+    public UserQueryService(IDbContextFactory<DataContext> factory)
     {
-        _context = context;
+        _factory = factory;
     }
 
-    public async Task<IEnumerable<int>> GetAll()
+    public async Task<IEnumerable<int>> GetAll(CancellationToken cancellationToken)
     {
-        return await _context.Users.Select(f => f.Id).ToArrayAsync();
+        await using var context = await _factory.CreateDbContextAsync(cancellationToken);
+        return await context.Users.Select(f => f.Id).ToArrayAsync(cancellationToken);
     }
 
     public async Task<IEnumerable<VkUserModel>> GetFullUsers()
     {
-        return await _context.Users
+        await using var context = await _factory.CreateDbContextAsync();
+        return await context.Users
             .Select(f => new VkUserModel
             {
                 Id = f.Id,
@@ -34,11 +36,13 @@ public sealed class UserQueryService : IUsersQueryService
 
     public async Task Add(int id, string name, string avatar)
     {
-        await _context.Users.AddAsync(new VkUser { Id = id, Avatar = avatar, Name = name });
+        await using var context = await _factory.CreateDbContextAsync();
+        await context.Users.AddAsync(new VkUser { Id = id, Avatar = avatar, Name = name });
     }
 
     public async Task Delete(int id)
     {
-        await _context.Users.Where(f => f.Id == id).ExecuteDeleteAsync();
+        await using var context = await _factory.CreateDbContextAsync();
+        await context.Users.Where(f => f.Id == id).ExecuteDeleteAsync();
     }
 }

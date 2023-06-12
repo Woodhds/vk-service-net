@@ -8,18 +8,20 @@ namespace VkService.Parsers;
 
 public sealed class UserParser : IMessageParser
 {
-    private readonly DataContext _dataContext;
+    private readonly IDbContextFactory<DataContext> _factory;
     private readonly IVkWallService _wallService;
 
-    public UserParser(DataContext dataContext, IVkWallService wallService)
+    public UserParser(IDbContextFactory<DataContext> factory, IVkWallService wallService)
     {
-        _dataContext = dataContext;
+        _factory = factory;
         _wallService = wallService;
     }
 
     public async IAsyncEnumerable<IEnumerable<RepostMessage>> Parse(CancellationToken cancellationToken)
     {
-        var ids = await _dataContext.Users.Select(f => f.Id).ToListAsync(cancellationToken);
+        await using var context = await _factory.CreateDbContextAsync(cancellationToken);
+        
+        var ids = await context.Users.Select(f => f.Id).ToListAsync(cancellationToken);
         foreach (var id in ids)
         {
             for (var i = 1; i <= 4; i++)

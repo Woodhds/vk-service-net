@@ -24,13 +24,14 @@ builder.Services.AddGrpc()
 builder.Services.AddVkClients(builder.Configuration);
 builder.Services.AddTransient<IMessagesSaveService, MessagesSaveService>();
 builder.Services.AddSingleton<IMessageParser, SiteParser>();
-builder.Services.AddScoped<IMessageParser, UserParser>();
+builder.Services.AddSingleton<IMessageParser, UserParser>();
 builder.Services.AddSingleton<ParsersService>(x =>
     new ParsersService(
-        x.GetRequiredService<IVkWallService>(), 
-        x.CreateScope().ServiceProvider.GetServices<IMessageParser>(),
+        x.GetRequiredService<IVkWallService>(),
+        x.GetServices<IMessageParser>(),
         x.GetRequiredService<IMessagesSaveService>()));
 builder.Services.AddScoped<IMessagesQueryService, MessageQueryService>();
+builder.Services.AddScoped<IUsersQueryService, VkService.Application.Implementation.UserQueryService>();
 
 
 var app = builder.Build();
