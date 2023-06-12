@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\VkService.Client.Abstractions\VkService.Client.Abstractions.csproj" />
+      <ProjectReference Include="..\VkService.Data\VkService.Data.csproj" />
+      <ProjectReference Include="..\VkService.Models\VkService.Models.csproj" />
+      <ProjectReference Include="..\VkService.Parsers.Abstractions\VkService.Parsers.Abstractions.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="HtmlAgilityPack" Version="1.11.46" />
+      <PackageReference Include="Microsoft.Extensions.Http" Version="8.0.0-preview.4.23259.5" />
+    </ItemGroup>
+
+</Project>

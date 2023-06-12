@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace VkService.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -15,6 +15,8 @@ namespace VkService.Data.Migrations
                 name: "Messages",
                 columns: table => new
                 {
+                    MessageId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
                     Id = table.Column<int>(type: "INTEGER", nullable: false),
                     OwnerId = table.Column<int>(type: "INTEGER", nullable: false),
                     RepostedFrom = table.Column<int>(type: "INTEGER", nullable: false),
@@ -22,7 +24,7 @@ namespace VkService.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Messages", x => new { x.OwnerId, x.Id });
+                    table.PrimaryKey("PK_Messages", x => x.MessageId);
                 });
 
             migrationBuilder.CreateTable(
@@ -38,17 +40,23 @@ namespace VkService.Data.Migrations
                     table.PrimaryKey("PK_Users", x => x.Id);
                 });
 
-            migrationBuilder.Sql("CREATE VIRTUAL TABLE IF NOT EXISTS Messages USING fts5(Id, OwnerId, Text)");
+            migrationBuilder.Sql("CREATE VIRTUAL TABLE IF NOT EXISTS messages_search USING fts5(text)");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Messages_OwnerId_Id",
+                table: "Messages",
+                columns: new[] { "OwnerId", "Id" },
+                unique: true);
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "messages_search");
 
             migrationBuilder.DropTable(
-                name: "VkMessageSearch");
+                name: "Users");
 
             migrationBuilder.DropTable(
                 name: "Messages");

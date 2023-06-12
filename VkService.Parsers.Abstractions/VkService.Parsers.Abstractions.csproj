@@ -7,7 +7,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\VkService.Infrastructure\VkService.Infrastructure.csproj" />
+      <ProjectReference Include="..\VkService.Models\VkService.Models.csproj" />
     </ItemGroup>
 
 </Project>

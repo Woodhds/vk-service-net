@@ -23,6 +23,8 @@
     
     <ItemGroup>
       <ProjectReference Include="..\VkService.Application\VkService.Application.csproj" />
+      <ProjectReference Include="..\VkService.Client.Abstractions\VkService.Client.Abstractions.csproj" />
+      <ProjectReference Include="..\VkService.Parsers.Abstractions\VkService.Parsers.Abstractions.csproj" />
     </ItemGroup>
 
 </Project>

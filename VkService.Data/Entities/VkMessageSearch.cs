@@ -1,11 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-
-namespace VkService.Data.Entities;
+﻿namespace VkService.Data.Entities;
 
 public class VkMessageSearch
 {
+    public int RowId { get; set; }
     public string? Text { get; set; }
-    public int OwnerId { get; set; }
-    public int Id { get; set; }
     public VkMessage? Message { get; set; }
+    
+    public double? Rank { get; set; }
 }

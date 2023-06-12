@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.AspNetCore.WebUtilities" Version="2.2.0" />
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0-preview.4.23259.5" />
+      <PackageReference Include="Microsoft.Extensions.Http" Version="8.0.0-preview.4.23259.5" />
+      <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.0-preview.4.23259.5" />
+      <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="8.0.0-preview.4.23259.5" />
+      <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="8.0.0-preview.4.23259.5" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\VkService.Client.Abstractions\VkService.Client.Abstractions.csproj" />
+      <ProjectReference Include="..\VkService.Infrastructure\VkService.Infrastructure.csproj" />
+      <ProjectReference Include="..\VkService.Models\VkService.Models.csproj" />
+    </ItemGroup>
+</Project>

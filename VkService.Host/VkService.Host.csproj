@@ -3,12 +3,13 @@
     <PropertyGroup>
         <TargetFramework>net8.0</TargetFramework>
         <Nullable>enable</Nullable>
-        <ImplicitUsings>enable</ImplicitUsings>
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\VkService.Client\VkService.Client.csproj" />
       <ProjectReference Include="..\VkService.Data\VkService.Data.csproj" />
       <ProjectReference Include="..\VkService.Grpc\VkService.Grpc.csproj" />
+      <ProjectReference Include="..\VkService.Parsers\VkService.Parsers.csproj" />
     </ItemGroup>
 
     <ItemGroup>
