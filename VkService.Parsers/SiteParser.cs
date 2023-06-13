@@ -1,4 +1,5 @@
-﻿using HtmlAgilityPack;
+﻿using System.Runtime.CompilerServices;
+using HtmlAgilityPack;
 using VkService.Models;
 using VkService.Parsers.Abstractions;
 
@@ -13,7 +14,7 @@ public class SiteParser : IMessageParser
         _factory = factory;
     }
 
-    public async IAsyncEnumerable<IEnumerable<RepostMessage>> Parse(CancellationToken cancellationToken)
+    public async IAsyncEnumerable<IEnumerable<RepostMessage>> Parse([EnumeratorCancellation] CancellationToken cancellationToken)
     {
         var client = _factory.CreateClient();
 

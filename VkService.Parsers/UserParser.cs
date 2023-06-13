@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Runtime.CompilerServices;
+using Microsoft.EntityFrameworkCore;
 using VkService.Client.Abstractions;
 using VkService.Data;
 using VkService.Models;
@@ -17,7 +18,7 @@ public sealed class UserParser : IMessageParser
         _wallService = wallService;
     }
 
-    public async IAsyncEnumerable<IEnumerable<RepostMessage>> Parse(CancellationToken cancellationToken)
+    public async IAsyncEnumerable<IEnumerable<RepostMessage>> Parse([EnumeratorCancellation] CancellationToken cancellationToken)
     {
         await using var context = await _factory.CreateDbContextAsync(cancellationToken);
         

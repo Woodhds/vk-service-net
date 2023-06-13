@@ -14,15 +14,17 @@ public sealed class ParsersService : ParserService.ParserServiceBase
     private readonly IVkWallService _wallService;
     private readonly IMessagesSaveService _messagesService;
 
-    public ParsersService(IVkWallService wallService, IEnumerable<IMessageParser> parsers,
-        IMessagesSaveService messagesService)
+    public ParsersService(
+        IVkWallService wallService,
+        IMessagesSaveService messagesService,
+        IEnumerable<IMessageParser> parsers)
     {
         _wallService = wallService;
         _parsers = parsers;
         _messagesService = messagesService;
     }
 
-    public override async Task<Empty> Parse(Empty request, ServerCallContext context)
+    public override Task<Empty> Parse(Empty request, ServerCallContext context)
     {
         foreach (var parser in _parsers)
         {
@@ -40,6 +42,6 @@ public sealed class ParsersService : ParserService.ParserServiceBase
             });
         }
 
-        return new Empty();
+        return Task.FromResult(new Empty());
     }
 }

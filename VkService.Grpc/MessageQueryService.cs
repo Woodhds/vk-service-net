@@ -53,7 +53,7 @@ public sealed class MessageQueryService : MessagesService.MessagesServiceBase
                 UserReposted = q.UserReposted,
                 Owner = q.Owner,
                 FromId = q.FromId
-            });
+            }) ?? ArraySegment<VkMessageExt>.Empty;
 
         return new GetMessagesResponse
         {
@@ -71,18 +71,19 @@ public sealed class MessageQueryService : MessagesService.MessagesServiceBase
 
         var posts = await _wallService.GetById(repost.Messages.Select(f => new RepostMessage(f.OwnerId, f.Id)));
         var reposts = posts.Response.Items.Where(c => c.Reposts is not null).ToArray();
-        foreach (var group in posts.Response.Groups.Where(c => !c.IsMember))
-        {
+
             try
             {
-                await _vkGroupService.JoinGroup(group.Id);
+                await Task.WhenAll(posts.Response.Groups
+                    .Where(c => !c.IsMember)
+                    .Select(group => _vkGroupService.JoinGroup(group.Id)));
             }
             catch (Exception e)
             {
                 _logger.LogError(e, e.Message);
             }
-        }
-
+        
+        
         foreach (var t in reposts)
         {
             try

@@ -1,7 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Data.Common;
+using Microsoft.EntityFrameworkCore;
 using VkService.Application.Abstractions;
 using VkService.Data;
-using VkService.Data.Extensions;
 using VkService.Models;
 using DbFunctionsExtensions = VkService.Data.Extensions.DbFunctionsExtensions;
 

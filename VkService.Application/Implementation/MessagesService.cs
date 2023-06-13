@@ -29,7 +29,7 @@ public sealed class MessagesSaveService : IMessagesSaveService
             {
                 Id = a.Id,
                 OwnerId = a.OwnerId,
-                Date = DateTimeOffset.Now,
+                Date = a.Date,
                 Content = new VkMessageSearch
                 {
                     Text = a.Text

@@ -28,8 +28,8 @@ builder.Services.AddSingleton<IMessageParser, UserParser>();
 builder.Services.AddSingleton<ParsersService>(x =>
     new ParsersService(
         x.GetRequiredService<IVkWallService>(),
-        x.GetServices<IMessageParser>(),
-        x.GetRequiredService<IMessagesSaveService>()));
+        x.GetRequiredService<IMessagesSaveService>(),
+        x.GetServices<IMessageParser>()));
 builder.Services.AddScoped<IMessagesQueryService, MessageQueryService>();
 builder.Services.AddScoped<IUsersQueryService, VkService.Application.Implementation.UserQueryService>();
 
