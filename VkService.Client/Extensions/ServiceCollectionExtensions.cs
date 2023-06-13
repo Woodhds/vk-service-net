@@ -20,6 +20,7 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<IVkWallService, VkWallService>();
         services.AddSingleton<IVkGroupService, VkGroupService>();
         services.AddSingleton<IVkUserService, VkUserService>();
+        services.AddScoped<IVkLikeService, VkLikeService>();
         services.AddTransient<VkClientHttpHandler>();
         services.AddSingleton<IUserTokenAccessor, ConstantTokenAccessor>();
         services.AddSingleton<IJsonSerializer, JsonSerializer>();

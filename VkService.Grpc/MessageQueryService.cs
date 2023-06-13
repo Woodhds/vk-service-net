@@ -15,18 +15,21 @@ public sealed class MessageQueryService : MessagesService.MessagesServiceBase
     private readonly IMessagesQueryService _messagesQueryService;
     private readonly IVkWallService _wallService;
     private readonly IVkGroupService _vkGroupService;
+    private readonly IVkLikeService _likeService;
     private readonly ILogger<MessageQueryService> _logger;
 
     public MessageQueryService(
         IMessagesQueryService messagesQueryService, 
         IVkWallService wallService,
         IVkGroupService vkGroupService, 
-        ILogger<MessageQueryService> logger)
+        ILogger<MessageQueryService> logger, 
+        IVkLikeService likeService)
     {
         _messagesQueryService = messagesQueryService;
         _wallService = wallService;
         _vkGroupService = vkGroupService;
         _logger = logger;
+        _likeService = likeService;
     }
 
     public override async Task<GetMessagesResponse> GetMessages(GetMessagesRequest request, ServerCallContext context)
@@ -96,6 +99,12 @@ public sealed class MessageQueryService : MessagesService.MessagesServiceBase
             }
         }
         
+        return new Empty();
+    }
+
+    public override async Task<Empty> Like(LikeMessageRequest request, ServerCallContext context)
+    {
+        await _likeService.Like(new RepostMessage(request.OwnerId, request.Id));
         return new Empty();
     }
 }
