@@ -1,18 +1,21 @@
-﻿namespace VkService.Models;
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace VkService.Models;
 
 public class VkMessageModel : IEquatable<VkMessageModel>
 {
     public int Id { get; set; }
     public int OwnerId { get; set; }
-    public int FromId { get; set; }
-    public DateTime Date { get; set; }
-    public string? Text { get; set; }
-    public int LikesCount { get; set; }
-    public int RepostsCount { get; set; }
-    public string Owner { get; set; }
-    public string[] Images { get; set; }
-
-    public bool UserReposted { get; set; }
+    public int FromId { get; private set; }
+    public DateTime Date { get; private set; }
+    public string? Text { get; private set; }
+    public int LikesCount { get; private set; }
+    public int RepostsCount { get; private set; }
+    public string Owner { get; private set; }
+    public string[] Images { get; private set; }
+    public bool UserReposted { get; private set; }
+    
+    public bool UserLikes { get; private set; }
 
     public VkMessageModel()
     {
@@ -32,6 +35,7 @@ public class VkMessageModel : IEquatable<VkMessageModel>
         LikesCount = message.Likes?.Count ?? 0;
         RepostsCount = message.Reposts?.Count ?? 0;
         UserReposted = message.Reposts?.UserReposted ?? false;
+        UserLikes = message.Likes?.UserLikes ?? false;
         Owner = groups.Where(a => a.Id == -message.OwnerId).Select(f => f.Name).FirstOrDefault() ?? "";
     }
 

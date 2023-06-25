@@ -55,7 +55,8 @@ public sealed class MessageQueryService : MessagesService.MessagesServiceBase
                 Date = q.Date.ToTimestamp(),
                 UserReposted = q.UserReposted,
                 Owner = q.Owner,
-                FromId = q.FromId
+                FromId = q.FromId,
+                UserLikes = q.UserLikes
             }) ?? ArraySegment<VkMessageExt>.Empty;
 
         return new GetMessagesResponse

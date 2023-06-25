@@ -49,6 +49,7 @@ message VkMessageExt {
   int32 reposts_count = 8 [json_name = "repostsCount"];
   string text = 9;
   bool user_reposted = 10 [json_name = "userReposted"];
+  bool user_likes = 11 [json_name = "userLikes"];
 }
 
 message RepostMessageRequest {
