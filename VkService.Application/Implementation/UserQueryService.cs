@@ -38,6 +38,7 @@ public sealed class UserQueryService : IUsersQueryService
     {
         await using var context = await _factory.CreateDbContextAsync();
         await context.Users.AddAsync(new VkUser { Id = id, Avatar = avatar, Name = name });
+        await context.SaveChangesAsync();
     }
 
     public async Task Delete(int id)

@@ -44,7 +44,8 @@ public enum MessageAttachmentType
     market_album = 14,
     sticker = 15,
     pretty_cards = 16,
-    Event = 17
+    Event = 17,
+    narrative = 18
 }
 
 public class MessageAttachment
