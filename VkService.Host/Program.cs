@@ -4,6 +4,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using VkService.Application.Abstractions;
 using VkService.Application.Implementation;
+using VkService.Auth.Apis;
+using VkService.Auth.Extensions;
 using VkService.Client.Abstractions;
 using VkService.Client.Extensions;
 using VkService.Data;
@@ -32,9 +34,15 @@ builder.Services.AddSingleton<ParsersService>(x =>
         x.GetServices<IMessageParser>()));
 builder.Services.AddScoped<IMessagesQueryService, MessageQueryService>();
 builder.Services.AddScoped<IUsersQueryService, VkService.Application.Implementation.UserQueryService>();
+builder.Services.AddVkAuth(builder.Configuration);
 
 
 var app = builder.Build();
+
+app.UseAuthentication();
+app.UseAuthorization();
+
+app.AddAuthEndpoints();
 
 app.MapGrpcService<VkService.Grpc.MessageQueryService>();
 app.MapGrpcService<UserQueryService>();

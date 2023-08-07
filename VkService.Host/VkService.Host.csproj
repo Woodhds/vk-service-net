@@ -6,6 +6,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\VkService.Auth\VkService.Auth.csproj" />
       <ProjectReference Include="..\VkService.Client\VkService.Client.csproj" />
       <ProjectReference Include="..\VkService.Data\VkService.Data.csproj" />
       <ProjectReference Include="..\VkService.Grpc\VkService.Grpc.csproj" />
@@ -20,5 +21,6 @@
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>
     </ItemGroup>
+
 
 </Project>
