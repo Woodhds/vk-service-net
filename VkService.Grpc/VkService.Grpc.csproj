@@ -7,9 +7,9 @@
 
     <ItemGroup>
       <PackageReference Include="Google.Api.CommonProtos" Version="2.10.0" />
-      <PackageReference Include="Google.Protobuf" Version="3.23.2" />
-      <PackageReference Include="Grpc.Core.Api" Version="2.54.0-pre1" />
-      <PackageReference Include="Grpc.Tools" Version="2.54.0">
+      <PackageReference Include="Google.Protobuf" Version="3.24.0" />
+      <PackageReference Include="Grpc.Core.Api" Version="2.56.0-pre1" />
+      <PackageReference Include="Grpc.Tools" Version="2.57.0">
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>
