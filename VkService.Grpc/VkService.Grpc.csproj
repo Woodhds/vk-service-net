@@ -19,6 +19,7 @@
         <Protobuf Include="..\protos\messages.proto" />
         <Protobuf Include="..\protos\parser.proto" />
         <Protobuf Include="..\protos\users.proto" />
+        <Protobuf Include="..\protos\groups.proto" />
     </ItemGroup>
     
     <ItemGroup>

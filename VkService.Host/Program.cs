@@ -40,5 +40,6 @@ app.MapGrpcService<VkService.Grpc.MessageQueryService>();
 app.MapGrpcService<UserQueryService>();
 app.MapGrpcService<ParsersService>();
 app.MapGrpcService<MessageQueryService>();
+app.MapGrpcService<VkService.Grpc.GroupsService>();
 
 await app.RunAsync();

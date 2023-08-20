@@ -9,6 +9,7 @@ public class DataContext : DbContext
     public DbSet<VkUser> Users { get; set; }
     public DbSet<VkMessage> Messages { get; set; }
     public DbSet<VkMessageSearch> MessageSearch { get; set; }
+    public DbSet<BannedGroup> BannedGroups { get; set; }
 
     public DataContext(DbContextOptions<DataContext> options)
         : base(options)

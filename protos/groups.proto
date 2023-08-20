@@ -1,0 +1,37 @@
+﻿syntax = "proto3";
+
+import "google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+
+service GroupsService {
+  rpc AddBanned(AddBannedRequest) returns(google.protobuf.Empty) {
+    option(google.api.http) = {
+      post: "/api/groups/banned/add",
+      body: "*"
+    };
+  };
+  rpc GetBanned(GetBannedRequest) returns(GetBannedResponse) {
+    option(google.api.http) = {
+      post: "/api/groups/banned",
+      body: "*"
+    };
+  };
+}
+
+message GetBannedRequest {
+  
+}
+
+message GetBannedResponse {
+  repeated Banned messages = 1;
+  
+  message Banned {
+    int32 id = 1;
+    string name = 2;
+    string img = 3;
+  }
+}
+
+message AddBannedRequest {
+  repeated int32 ids = 1;
+}

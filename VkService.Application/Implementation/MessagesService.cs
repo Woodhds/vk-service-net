@@ -23,8 +23,12 @@ public sealed class MessagesSaveService : IMessagesSaveService
             join m in message on new { c.OwnerId, c.Id } equals new { m.OwnerId, m.Id }
             select new { c.OwnerId, c.Id })
                 .ToArray();
+        
+        var bannedGroups = await context.BannedGroups.Select(f => f.Id).ToArrayAsync(cancellationToken);
 
-        var toAdd = message.Where(f => !existed.Any(a => a.Id == f.Id && a.OwnerId == f.OwnerId))
+        var toAdd = message
+            .Where(f => !existed.Any(a => a.Id == f.Id && a.OwnerId == f.OwnerId))
+            .Where(a => !bannedGroups.Contains(a.OwnerId))
             .Select(a => new VkEntity
             {
                 Id = a.Id,

@@ -37,6 +37,15 @@ public class VkGroupService : BaseHttpClient<VkGroupService>, IVkGroupService
         return base.GetAsync<VkResponse<IReadOnlyCollection<VkGroup>>>(VkApiUrls.Groups, @params);
     }
 
+    public Task<VkResponse<IReadOnlyCollection<VkGroup>>> GetById(IEnumerable<int> ids, CancellationToken ct)
+    {
+        var @params = new NameValueCollection
+        {
+            {"group_ids", $"{string.Join(',', ids)}"}
+        };
+        return base.GetAsync<VkResponse<IReadOnlyCollection<VkGroup>>>(VkApiUrls.Groups, @params);
+    }
+
     public Task LeaveGroup(int groupId)
     {
         var @params = new NameValueCollection

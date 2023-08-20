@@ -1,24 +1,37 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VkService.Host", "VkService.Host\VkService.Host.csproj", "{FE220142-8365-4D1E-BDE4-6756D84E1C32}"
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34004.107
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VkService.Host", "VkService.Host\VkService.Host.csproj", "{FE220142-8365-4D1E-BDE4-6756D84E1C32}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VkService.Data", "VkService.Data\VkService.Data.csproj", "{A796FACE-F687-4DEB-9FA2-9BFFCC785AF1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VkService.Data", "VkService.Data\VkService.Data.csproj", "{A796FACE-F687-4DEB-9FA2-9BFFCC785AF1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VkService.Application", "VkService.Application\VkService.Application.csproj", "{110A440A-9A42-4E9D-99B6-DEED3A6478BD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VkService.Application", "VkService.Application\VkService.Application.csproj", "{110A440A-9A42-4E9D-99B6-DEED3A6478BD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VkService.Grpc", "VkService.Grpc\VkService.Grpc.csproj", "{E9E6395E-085E-4CCD-9026-505964125A09}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VkService.Grpc", "VkService.Grpc\VkService.Grpc.csproj", "{E9E6395E-085E-4CCD-9026-505964125A09}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VkService.Models", "VkService.Models\VkService.Models.csproj", "{D2A73C82-707E-491C-B4AE-52F61BBC0FAA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VkService.Models", "VkService.Models\VkService.Models.csproj", "{D2A73C82-707E-491C-B4AE-52F61BBC0FAA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VkService.Parsers.Abstractions", "VkService.Parsers.Abstractions\VkService.Parsers.Abstractions.csproj", "{91749FDC-B5D6-40A8-A1AC-9EC2C5830D93}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VkService.Parsers.Abstractions", "VkService.Parsers.Abstractions\VkService.Parsers.Abstractions.csproj", "{91749FDC-B5D6-40A8-A1AC-9EC2C5830D93}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VkService.Parsers", "VkService.Parsers\VkService.Parsers.csproj", "{6B3F80B9-9B3B-45F9-A9E4-5F7E7C0CF0F7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VkService.Parsers", "VkService.Parsers\VkService.Parsers.csproj", "{6B3F80B9-9B3B-45F9-A9E4-5F7E7C0CF0F7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VkService.Client.Abstractions", "VkService.Client.Abstractions\VkService.Client.Abstractions.csproj", "{BD2B81AF-3681-4108-B1A9-9BA209C65821}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VkService.Client.Abstractions", "VkService.Client.Abstractions\VkService.Client.Abstractions.csproj", "{BD2B81AF-3681-4108-B1A9-9BA209C65821}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VkService.Client", "VkService.Client\VkService.Client.csproj", "{72FF9FC9-F559-426C-9BA0-AACB7D2629C0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VkService.Client", "VkService.Client\VkService.Client.csproj", "{72FF9FC9-F559-426C-9BA0-AACB7D2629C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VkService.Infrastructure", "VkService.Infrastructure\VkService.Infrastructure.csproj", "{3F47BE8B-BC4A-4F76-9E9E-223809314429}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VkService.Infrastructure", "VkService.Infrastructure\VkService.Infrastructure.csproj", "{3F47BE8B-BC4A-4F76-9E9E-223809314429}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{95052D7F-9D28-4F08-85EF-CC4244A3248D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "protos", "protos", "{D0B8F997-04F3-4258-9964-DB1FA4E40586}"
+	ProjectSection(SolutionItems) = preProject
+		protos\groups.proto = protos\groups.proto
+		protos\messages.proto = protos\messages.proto
+		protos\parser.proto = protos\parser.proto
+		protos\users.proto = protos\users.proto
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -66,5 +79,14 @@ Global
 		{3F47BE8B-BC4A-4F76-9E9E-223809314429}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3F47BE8B-BC4A-4F76-9E9E-223809314429}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3F47BE8B-BC4A-4F76-9E9E-223809314429}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4EB03212-7A70-4B0B-8257-2D9558DCB9B0}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D0B8F997-04F3-4258-9964-DB1FA4E40586} = {95052D7F-9D28-4F08-85EF-CC4244A3248D}
 	EndGlobalSection
 EndGlobal
