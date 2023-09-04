@@ -6,6 +6,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="Dapper" Version="2.0.151" />
       <PackageReference Include="Google.Api.CommonProtos" Version="2.10.0" />
       <PackageReference Include="Google.Protobuf" Version="3.24.0" />
       <PackageReference Include="Grpc.Core.Api" Version="2.56.0-pre1" />
@@ -13,6 +14,7 @@
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>
+      <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.0-preview.7.23375.6" />
     </ItemGroup>
     
     <ItemGroup>

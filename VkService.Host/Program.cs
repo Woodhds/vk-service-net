@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Builder;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using VkService.Application.Abstractions;
@@ -14,9 +13,8 @@ using MessageQueryService = VkService.Application.Implementation.MessageQuerySer
 using UserQueryService = VkService.Grpc.UserQueryService;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddDbContextFactory<DataContext>(x => x
-    .UseSqlite(builder.Configuration.GetConnectionString("DataContext"))
-    .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
+builder.Services.AddSingleton<IDbConnectionFactory>(x =>
+    new DbConnectionFactory(builder.Configuration.GetConnectionString("DataContext")));
 
 builder.Services.AddGrpc()
     .AddJsonTranscoding();

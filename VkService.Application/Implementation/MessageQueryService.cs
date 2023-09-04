@@ -1,38 +1,37 @@
-﻿using System.Data.Common;
-using Microsoft.EntityFrameworkCore;
+﻿using Dapper;
 using VkService.Application.Abstractions;
 using VkService.Data;
 using VkService.Models;
-using DbFunctionsExtensions = VkService.Data.Extensions.DbFunctionsExtensions;
 
 namespace VkService.Application.Implementation;
 
 public sealed class MessageQueryService : IMessagesQueryService
 {
-    private readonly IDbContextFactory<DataContext> _factory;
+    private readonly IDbConnectionFactory _factory;
 
-    public MessageQueryService(IDbContextFactory<DataContext> factory)
+    public MessageQueryService(IDbConnectionFactory factory)
     {
         _factory = factory;
     }
 
     public async Task<IReadOnlyCollection<VkMessageModel>> GetMessages(string search)
     {
-        await using var context = await _factory.CreateDbContextAsync();
+        await using var connection = _factory.GetConnection();
 
         var searchText = $"\"{search}\"";
 
-        var messages = context.MessageSearch
-            .Include(f => f.Message)
-            .Where(f => DbFunctionsExtensions.Match(searchText, f.Text))
-            .OrderBy(f => f.Rank)
-            .Select(f => new VkMessageModel
-            {
-                OwnerId = f.Message.OwnerId,
-                Id = f.Message.Id
-            })
-            .ToArray();
+        var messages = await connection.QueryAsync<VkMessageModel>(new(
+            """
+            SELECT
+                messages.Id,
+            	messages.OwnerId
+            FROM messages 
+            INNER JOIN messages_search as search  on messages.RowId = search.RowId
+            LEFT JOIN BannedGroups on messages.OwnerId = BannedGroups.Id
+            	where search.Text MATCH @searchText AND BannedGroups.Id IS NULL
+            	order by rank
+            """, new { searchText }));
 
-        return messages;
+        return messages.ToArray();
     }
 }

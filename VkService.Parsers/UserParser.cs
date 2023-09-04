@@ -1,5 +1,5 @@
 ﻿using System.Runtime.CompilerServices;
-using Microsoft.EntityFrameworkCore;
+using Dapper;
 using VkService.Client.Abstractions;
 using VkService.Data;
 using VkService.Models;
@@ -9,10 +9,10 @@ namespace VkService.Parsers;
 
 public sealed class UserParser : IMessageParser
 {
-    private readonly IDbContextFactory<DataContext> _factory;
+    private readonly IDbConnectionFactory _factory;
     private readonly IVkWallService _wallService;
 
-    public UserParser(IDbContextFactory<DataContext> factory, IVkWallService wallService)
+    public UserParser(IDbConnectionFactory factory, IVkWallService wallService)
     {
         _factory = factory;
         _wallService = wallService;
@@ -20,9 +20,9 @@ public sealed class UserParser : IMessageParser
 
     public async IAsyncEnumerable<IEnumerable<RepostMessage>> Parse([EnumeratorCancellation] CancellationToken cancellationToken)
     {
-        await using var context = await _factory.CreateDbContextAsync(cancellationToken);
-        
-        var ids = await context.Users.Select(f => f.Id).ToListAsync(cancellationToken);
+        await using var connection = _factory.GetConnection();
+
+        var ids = await connection.QueryAsync<int>("select Id from Users");
         foreach (var id in ids)
         {
             for (var i = 1; i <= 4; i++)
