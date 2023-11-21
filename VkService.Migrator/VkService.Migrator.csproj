@@ -11,9 +11,9 @@
       <PackageReference Include="FluentMigrator" Version="3.3.2" />
       <PackageReference Include="FluentMigrator.Runner" Version="3.3.2" />
       <PackageReference Include="FluentMigrator.Runner.SQLite" Version="3.3.2" />
-      <PackageReference Include="Microsoft.Data.Sqlite" Version="8.0.0-preview.7.23375.4" />
-      <PackageReference Include="Microsoft.Extensions.Configuration" Version="8.0.0-preview.7.23375.6" />
-      <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0-preview.7.23375.6" />
+      <PackageReference Include="Microsoft.Data.Sqlite" Version="8.0.0" />
+      <PackageReference Include="Microsoft.Extensions.Configuration" Version="8.0.0" />
+      <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0" />
     </ItemGroup>
 
     <ItemGroup>
