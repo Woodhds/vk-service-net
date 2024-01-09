@@ -9,7 +9,7 @@ public class Initial : Migration {
     {
         const string sql = 
             """
-            CREATE TABLE IF NOT EXISTS VkUserModel 
+            CREATE TABLE IF NOT EXISTS Users 
             (
             	Id INTEGER,
             	Avatar Text,

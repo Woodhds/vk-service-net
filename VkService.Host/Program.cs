@@ -1,3 +1,4 @@
+using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,16 +13,16 @@ using VkService.Parsers.Abstractions;
 using MessageQueryService = VkService.Application.Implementation.MessageQueryService;
 using UserQueryService = VkService.Grpc.UserQueryService;
 
-var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddSingleton<IDbConnectionFactory>(x =>
-    new DbConnectionFactory(builder.Configuration.GetConnectionString("DataContext")));
+var builder = WebApplication.CreateSlimBuilder(args);
+builder.Services.AddSingleton<IDbConnectionFactory>(_ =>
+    new DbConnectionFactory(builder.Configuration?.GetConnectionString("DataContext") ??
+                            throw new ArgumentException("Connection string is empty")));
 
 builder.Services.AddGrpc()
     .AddJsonTranscoding();
 
 builder.Services.AddVkClients(builder.Configuration);
 builder.Services.AddTransient<IMessagesSaveService, MessagesSaveService>();
-builder.Services.AddSingleton<IMessageParser, SiteParser>();
 builder.Services.AddSingleton<IMessageParser, UserParser>();
 builder.Services.AddSingleton<ParsersService>(x =>
     new ParsersService(
