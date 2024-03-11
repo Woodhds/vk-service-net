@@ -29,7 +29,7 @@ public class VkMessageModel : IEquatable<VkMessageModel>
         Text = message.Text;
         FromId = message.FromId;
         Images = message.Attachments?
-            .Where(f => f is { Type: MessageAttachmentType.photo, Photo.Sizes.Count: > 2 })
+            .Where(f => f is { Type: "photo", Photo.Sizes.Count: > 2 })
             .Select(f => f.Photo.Sizes[3].Url)
             .ToArray();
         LikesCount = message.Likes?.Count ?? 0;

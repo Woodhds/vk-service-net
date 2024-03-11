@@ -25,32 +25,10 @@ public enum PostType
     Video = 1
 }
 
-public enum MessageAttachmentType
-{
-    photo = 0,
-    audio = 1,
-    video = 2,
-    link = 3,
-    poll = 4,
-    page = 5,
-    album = 6,
-    doc = 7,
-    posted_photo = 8,
-    graffiti = 9,
-    note = 10,
-    app = 11,
-    photos_list = 12,
-    market = 13,
-    market_album = 14,
-    sticker = 15,
-    pretty_cards = 16,
-    Event = 17,
-    narrative = 18
-}
 
 public class MessageAttachment
 {
-    public MessageAttachmentType Type { get; set; }
+    public string Type { get; set; }
     public AttachmentPhoto? Photo { get; set; }
 }
 
